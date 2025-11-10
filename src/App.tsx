@@ -8,6 +8,12 @@ import AdminRoute from "./components/AdminRoute";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import OTPVerification from "./pages/auth/OTPVerification";
 import ResetPassword from "./pages/auth/ResetPassword";
+import React from "react";
+
+// lazy imports for heavier/more error-prone pages
+const UploadFloorplan = React.lazy(() => import("./pages/floorplans/UploadFloorplan"));
+const FloorplanList = React.lazy(() => import("./pages/floorplans/FloorplanList"));
+const Editor = React.lazy(() => import("./pages/floorplans/Editor"));
 
 export default function App() {
   return (
@@ -26,7 +32,15 @@ export default function App() {
         </div>
       </header>
 
-      <section className="grid">
+      <section
+        className="grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 560px", // left column flexible, right column fixed wider
+          gap: 24,
+          alignItems: "start",
+        }}
+      >
         <div className="panel-left">
           <h2>Welcome to Floor Plan Management</h2>
           <p>Upload floorplans, draw rooms/seats, manage overlays and create bookings - all from a simple interface.</p>
@@ -37,7 +51,7 @@ export default function App() {
           </ul>
         </div>
 
-        <div>
+        <div style={{ width: "100%" /* ensures right column components use full fixed width */ }}>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
@@ -47,6 +61,9 @@ export default function App() {
             <Route path="/auth/otp" element={<OTPVerification />} />
             <Route path="/auth/reset" element={<ResetPassword />} />
 
+            <Route path="/upload" element={<ProtectedRoute><UploadFloorplan /></ProtectedRoute>} />
+            <Route path="/floorplans" element={<ProtectedRoute><FloorplanList /></ProtectedRoute>} />
+            <Route path="/editor/:id" element={<ProtectedRoute><Editor /></ProtectedRoute>} />
           </Routes>
         </div>
       </section>

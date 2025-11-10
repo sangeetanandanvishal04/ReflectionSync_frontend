@@ -12,16 +12,20 @@
   "dependencies": {
     "@tanstack/react-query": "^5.90.7",
     "axios": "^1.13.2",
+    "fabric": "^6.9.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.66.0",
-    "react-router-dom": "^7.9.5"
+    "react-router-dom": "^7.9.5",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@types/fabric": "^5.3.10",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/uuid": "^11.0.0",
     "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.39.1",
