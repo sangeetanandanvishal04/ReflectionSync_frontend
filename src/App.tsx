@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { Routes, Route, Link } from "react-router-dom";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import OTPVerification from "./pages/auth/OTPVerification";
+import ResetPassword from "./pages/auth/ResetPassword";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <header className="header">
+        <div className="brand">
+          <div className="logo">R</div>
+          <div>
+            <h1>ReflectionSync</h1>
+            <div style={{ fontSize: 13, color: "#6b7280" }}>Floor Plan Manager</div>
+          </div>
+        </div>
+        <div>
+          <Link to="/login" className="link" style={{ marginRight: 12 }}>Login</Link>
+          <Link to="/signup" className="link">Register</Link>
+        </div>
+      </header>
 
-export default App
+      <section className="grid">
+        <div className="panel-left">
+          <h2>Welcome to Floor Plan Management</h2>
+          <p>Upload floorplans, draw rooms/seats, manage overlays and create bookings - all from a simple interface.</p>
+          <ul className="features">
+            <li>Upload image / PDF floorplans</li>
+            <li>Create & edit rooms and seats on an interactive canvas</li>
+            <li>Book rooms and detect conflicts</li>
+          </ul>
+        </div>
+
+        <div>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/admin" element={<AdminRoute><div className="card">Admin area</div></AdminRoute>} />
+            <Route path="/auth/forgot" element={<ForgotPassword />} />
+            <Route path="/auth/otp" element={<OTPVerification />} />
+            <Route path="/auth/reset" element={<ResetPassword />} />
+
+          </Routes>
+        </div>
+      </section>
+    </div>
+  );
+}
