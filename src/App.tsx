@@ -9,6 +9,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import OTPVerification from "./pages/auth/OTPVerification";
 import ResetPassword from "./pages/auth/ResetPassword";
 import React from "react";
+import BookingsPage from "./pages/bookings/BookingsPage";
 
 // lazy imports for heavier/more error-prone pages
 const UploadFloorplan = React.lazy(() => import("./pages/floorplans/UploadFloorplan"));
@@ -64,6 +65,8 @@ export default function App() {
             <Route path="/upload" element={<ProtectedRoute><UploadFloorplan /></ProtectedRoute>} />
             <Route path="/floorplans" element={<ProtectedRoute><FloorplanList /></ProtectedRoute>} />
             <Route path="/editor/:id" element={<ProtectedRoute><Editor /></ProtectedRoute>} />
+
+            <Route path="/bookings" element={<ProtectedRoute><BookingsPage /></ProtectedRoute>} />
           </Routes>
         </div>
       </section>
