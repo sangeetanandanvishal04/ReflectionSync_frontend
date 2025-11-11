@@ -1,4 +1,3 @@
-// src/App.tsx
 import { Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
@@ -11,7 +10,6 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import React from "react";
 import BookingsPage from "./pages/bookings/BookingsPage";
 
-// lazy imports for heavier/more error-prone pages
 const UploadFloorplan = React.lazy(() => import("./pages/floorplans/UploadFloorplan"));
 const FloorplanList = React.lazy(() => import("./pages/floorplans/FloorplanList"));
 const Editor = React.lazy(() => import("./pages/floorplans/Editor"));
@@ -37,7 +35,7 @@ export default function App() {
         className="grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 560px", // left column flexible, right column fixed wider
+          gridTemplateColumns: "1fr 560px",
           gap: 24,
           alignItems: "start",
         }}
@@ -48,11 +46,11 @@ export default function App() {
           <ul className="features">
             <li>Upload image / PDF floorplans</li>
             <li>Create & edit rooms and seats on an interactive canvas</li>
-            <li>Book rooms and detect conflicts</li>
+            <li>Search & Book Available rooms</li>
           </ul>
         </div>
 
-        <div style={{ width: "100%" /* ensures right column components use full fixed width */ }}>
+        <div style={{ width: "100%"}}>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
